@@ -4,19 +4,16 @@
 // blob/master/src/components/AnimatedText.tsx for web compatibility
 
 import React, { useMemo, useRef } from 'react';
-import { TextInput, Platform } from 'react-native';
-import Animated, { useAnimatedReaction } from 'react-native-reanimated';
+import { Platform } from 'react-native';
+import { useAnimatedReaction } from 'react-native-reanimated';
+import AnimateableText from 'react-native-animateable-text';
 
 import COLORS from '../../utils/colors';
 import type { ProgressValueProps } from '../../types';
 
 import styles from './styles';
 
-Animated.addWhitelistedNativeProps({ text: true });
-const AnimatedInput = Animated.createAnimatedComponent(TextInput);
-
 const ProgressValue: React.FC<ProgressValueProps> = ({
-  initialValue = 0,
   radius = 60,
   activeStrokeColor = COLORS.GREEN,
   progressValueColor,
@@ -62,12 +59,9 @@ const ProgressValue: React.FC<ProgressValueProps> = ({
   );
 
   return (
-    <AnimatedInput
+    <AnimateableText
       testID="progress-value-text"
       ref={inputRef}
-      underlineColorAndroid={COLORS.TRANSPARENT}
-      editable={false}
-      defaultValue={`${initialValue}`}
       style={[
         styles(styleProps).input,
         progressValueStyle,

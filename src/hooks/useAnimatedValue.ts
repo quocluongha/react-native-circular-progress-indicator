@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo } from 'react';
+import type { ColorValue } from 'react-native';
 import {
   createAnimatedPropAdapter,
   Easing,
@@ -38,7 +39,7 @@ export interface UseAnimatedValueProps {
 
 type Config = {
   strokeDashoffset: number;
-  stroke?: string | number;
+  stroke?: ColorValue;
 };
 
 export default function useAnimatedValue({
